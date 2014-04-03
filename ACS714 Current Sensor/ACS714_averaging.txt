@@ -1,0 +1,27 @@
+int analogInPin = A0;  // Analog input pin that the carrier board OUT is connected to
+void setup() {
+  // initialize serial communications at 9600 bps:
+  Serial.begin(9600); 
+}
+
+void loop() {
+  // read the analog in value:
+float average = 0;
+  for(int i = 0; i < 1000; i++) {
+   average = average + (.00739 * analogRead(A0) -3.78) / 1000;
+   delay(1);
+  }
+  Serial.println(average);
+/*
+Analog read produces a value of 0-1023, equating to 0v to 5v. 
+0.52V corresponds to 106 and 4.88V corresponds to 917 giving 811 steps
+811 steps(-30A to +30A mapped to 811 steps), giving (60/811=0.07398)
+*/
+  // printing the results to the serial monitor:
+    Serial.print("\t Current (ma) = ");      
+  Serial.println(average);   
+  // wait 2 milliseconds before the next loop
+  // for the analog-to-digital converter to settle
+  // after the last reading:
+delay(10);                     
+}

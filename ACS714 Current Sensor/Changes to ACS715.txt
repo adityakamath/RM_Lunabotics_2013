@@ -1,0 +1,8 @@
+  batVal = analogRead(batMonPin);    // read the voltage on the divider 
+  pinVoltage = batVal * 0.00488;       //  Calculate the voltage on the A/D pin
+                                    //  A reading of 1 for the A/D = 0.0048mV
+                                    //  if we multiply the A/D reading by 0.00488 then 
+                                    //  we get the voltage on the pin.  
+
+  batteryVoltage = pinVoltage * ratio;    //  Use the ratio calculated for the voltage divider
+                                          //  to calculate the battery voltage
